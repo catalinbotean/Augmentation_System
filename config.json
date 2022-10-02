@@ -1,0 +1,20 @@
+{
+  "process_1": {
+    "transformation_1": "TRANSFORMATION_1 30",
+    "transformation_2": "TRANSFORMATION_2 70"
+  },
+  "process_2": {
+    "transformation": "TRANSFORMATION_1 60"
+  },
+  "process_3": {
+    "transformation_1": "TRANSFORMATION_1 10",
+    "transformation_2": "TRANSFORMATION_3 35"
+  },
+  "process_4": {
+    "transformation": "TRANSFORMATION_2 80"
+  },
+  "process_5": {
+    "transformation_1": "TRANSFORMATION_5 30",
+    "transformation_2": "TRANSFORMATION_4 25"
+  }
+}
