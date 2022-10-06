@@ -1,11 +1,13 @@
-import logging
-
-from constants import CONFIG_FILE_PATH, DATE_FORMAT, LOGGING_FILE, LOGGING_FORMAT
-from utils.parser import load_config_file
+from ui.ui import create_ui
+from utils.files import get_images, read_images, create_directory
+from utils.initialize import initialize_system
+from utils.transformations import apply_augmentation
 
 if __name__ == '__main__':
-    logging.basicConfig(format=LOGGING_FORMAT, datefmt=DATE_FORMAT, level=logging.INFO, filename=LOGGING_FILE, filemode='w')
-    logging.info('The config file is being loaded ...')
-    data = load_config_file(CONFIG_FILE_PATH)
-    logging.info('The config file has been loaded.')
-    print(data)
+    processes_data = initialize_system()
+    directory_path = create_ui()
+    images_path = get_images(directory_path)
+    images_data = read_images(images_path)
+    new_directory = create_directory(directory_path)
+    apply_augmentation(images_data, processes_data, new_directory)
+
