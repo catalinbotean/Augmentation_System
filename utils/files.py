@@ -2,6 +2,7 @@ import logging
 import os
 import cv2
 import sys
+import numpy as np
 
 
 def get_images(directory):
@@ -34,3 +35,11 @@ def create_directory(directory_path):
     os.mkdir(new_directory)
     logging.info('The new directory was created')
     return new_directory
+
+
+def convert_to_float64(image):
+    return np.array(image, dtype=np.float64)
+
+
+def convert_to_uint8(image):
+    return np.array(image, dtype=np.uint8)

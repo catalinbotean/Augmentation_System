@@ -1,15 +1,18 @@
+import copy
 import sys
 
-import augmentation.dummy
+import augmentation.index
 import cv2
 import logging
 
 transformation_dictionary = {
-    "TRANSFORMATION_1": "dummy1",
-    "TRANSFORMATION_2": "dummy2",
-    "TRANSFORMATION_3": "dummy3",
-    "TRANSFORMATION_4": "dummy4",
-    "TRANSFORMATION_5": "dummy5"
+    "Brightness": "brightness",
+    "Contrast": "contrast",
+    "GaussianBlur": "gaussian_blur",
+    "Rotation": "rotation",
+    "Scaling": "scaling",
+    "Translation": "translation",
+    "Flip": "flip"
 }
 
 
@@ -19,13 +22,18 @@ def apply_augmentation(images, processes, new_directory):
         for image in images:
             image_name, image_data = image
             transformations_name = ''
+            temporary_image_data = copy.copy(image_data)
             for transformation in process:
                 decode_transformation = transformation.split(' ')
                 transformations_name = transformations_name + decode_transformation[0]+'_'
                 function_name = transformation_dictionary[decode_transformation[0]]
-                augmentation_function = getattr(augmentation.dummy, function_name)
-                image_data = augmentation_function(image_data, decode_transformation[1])
-            status = cv2.imwrite(new_directory+'/'+image_name+'_'+transformations_name+str(count)+'.jpg', image_data)
+                augmentation_function = getattr(augmentation.index, function_name)
+                if len(decode_transformation) == 3:
+                    parameter = [decode_transformation[1]]+[decode_transformation[2]]
+                else:
+                    parameter = [decode_transformation[1]]
+                temporary_image_data = augmentation_function(temporary_image_data, parameter)
+            status = cv2.imwrite(new_directory+'/'+image_name+'_'+transformations_name+str(count)+'.jpg', temporary_image_data)
             if not status:
                 logging.error(f'ERROR: Writing {new_directory}/{image_name}_{transformations_name}{count}.jpg has failed')
                 sys.exit()

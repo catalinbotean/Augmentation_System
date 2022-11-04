@@ -1,20 +1,20 @@
 {
-  "process_1": {
-    "transformation_1": "TRANSFORMATION_1 30",
-    "transformation_2": "TRANSFORMATION_2 70"
+  "p1": {
+    "t1": "Brightness 60",
+    "t2": "Rotation 70"
   },
-  "process_2": {
-    "transformation": "TRANSFORMATION_1 60"
+  "p2": {
+    "t": "Contrast 0.6"
   },
-  "process_3": {
-    "transformation_1": "TRANSFORMATION_1 10",
-    "transformation_2": "TRANSFORMATION_3 35"
+  "p3": {
+    "t1": "Brightness 10",
+    "t2": "GaussianBlur 6 16"
   },
-  "process_4": {
-    "transformation": "TRANSFORMATION_2 80"
+  "p4": {
+    "t": "Scaling 0.6 0.4"
   },
-  "process_5": {
-    "transformation_1": "TRANSFORMATION_5 30",
-    "transformation_2": "TRANSFORMATION_4 25"
+  "p5": {
+    "t1": "Translation 100 150",
+    "t2": "Flip 0 1"
   }
 }
